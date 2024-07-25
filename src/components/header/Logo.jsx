@@ -6,7 +6,7 @@ const Logo = () => {
             <a href="/">
                 <em aria-hidden="true"></em>
                 <span>
-                    webs
+                    chop
                     <br />
                     youtube
                 </span>
