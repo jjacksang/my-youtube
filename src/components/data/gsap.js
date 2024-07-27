@@ -1,18 +1,18 @@
-import gsap01 from "../assets/img/gsap/gsap01.jpg";
-import gsap02 from "../assets/img/gsap/gsap02.jpg";
-import gsap03 from "../assets/img/gsap/gsap03.jpg";
-import gsap04 from "../assets/img/gsap/gsap04.jpg";
-import gsap05 from "../assets/img/gsap/gsap05.jpg";
-import gsap06 from "../assets/img/gsap/gsap06.jpg";
-import gsap07 from "../assets/img/gsap/gsap07.jpg";
-import gsap08 from "../assets/img/gsap/gsap08.jpg";
-import gsap09 from "../assets/img/gsap/gsap09.jpg";
-import gsap10 from "../assets/img/gsap/gsap10.jpg";
-import gsap11 from "../assets/img/gsap/gsap11.jpg";
-import gsap12 from "../assets/img/gsap/gsap12.jpg";
-import gsap13 from "../assets/img/gsap/gsap13.jpg";
-import gsap14 from "../assets/img/gsap/gsap14.jpg";
-import gsap15 from "../assets/img/gsap/gsap15.jpg";
+import gsap01 from "../../assets/img/gsap/gsap01.jpg";
+import gsap02 from "../../assets/img/gsap/gsap02.jpg";
+import gsap03 from "../../assets/img/gsap/gsap03.jpg";
+import gsap04 from "../../assets/img/gsap/gsap04.jpg";
+import gsap05 from "../../assets/img/gsap/gsap05.jpg";
+import gsap06 from "../../assets/img/gsap/gsap06.jpg";
+import gsap07 from "../../assets/img/gsap/gsap07.jpg";
+import gsap08 from "../../assets/img/gsap/gsap08.jpg";
+import gsap09 from "../../assets/img/gsap/gsap09.jpg";
+import gsap10 from "../../assets/img/gsap/gsap10.jpg";
+import gsap11 from "../../assets/img/gsap/gsap11.jpg";
+import gsap12 from "../../assets/img/gsap/gsap12.jpg";
+import gsap13 from "../../assets/img/gsap/gsap13.jpg";
+import gsap14 from "../../assets/img/gsap/gsap14.jpg";
+import gsap15 from "../../assets/img/gsap/gsap15.jpg";
 
 export const gsapText = [
     {

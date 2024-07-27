@@ -1,8 +1,8 @@
-import youtube01 from "../assets/img/youtube/youtube01.jpg";
-import youtube02 from "../assets/img/youtube/youtube02.jpg";
-import youtube03 from "../assets/img/youtube/youtube03.jpg";
-import youtube04 from "../assets/img/youtube/youtube04.jpg";
-import youtube05 from "../assets/img/youtube/youtube05.jpg";
+import youtube01 from "../../assets/img/youtube/youtube01.jpg";
+import youtube02 from "../../assets/img/youtube/youtube02.jpg";
+import youtube03 from "../../assets/img/youtube/youtube03.jpg";
+import youtube04 from "../../assets/img/youtube/youtube04.jpg";
+import youtube05 from "../../assets/img/youtube/youtube05.jpg";
 
 export const youtubeText = [
     {
