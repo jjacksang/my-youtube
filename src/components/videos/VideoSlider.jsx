@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -6,8 +6,18 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const VideoSlider = ({ videos, title, id }) => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
+    }, []);
+
+    const youtubeClass = loading ? "isLoading" : "isLoaded";
+
     return (
-        <section id={id}>
+        <section id={id} className={youtubeClass}>
             <h2>{title}</h2>
             <div className="video__slider">
                 <Swiper

@@ -10,12 +10,13 @@ import { websiteText } from "../components/data/website";
 import { gsapText } from "../components/data/gsap";
 import { portfolioText } from "../components/data/portfolio";
 import { youtubeText } from "../components/data/youtube";
+import { developerText } from "../components/data/developer";
 
 const Home = () => {
     return (
         <Main title="CHOP의 유튜브" description="CHOP의 유튜브 사이트에 오신 것을 환영합니다.">
             <Today />
-            <Developer />
+            <Developer videos={developerText} title="😪 추천 개발자를 소개합니다." id="developer" />
             <VideoSlider videos={webdText} title="😮 웹디자인기능사 준비는 이걸로!" id="webd" />
             <VideoSlider
                 videos={websiteText}
