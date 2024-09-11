@@ -6,7 +6,7 @@ import { fetchSearchVideo } from "../utils/api";
 
 const Search = () => {
     const { searchId } = useParams();
-    // const [videos, setVideos] = useState([]);
+    const [videos, setVideos] = useState([]);
     // const [nextPageToken, setNextPageToken] = useState(null);
 
     useEffect(() => {
