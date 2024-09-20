@@ -16,17 +16,17 @@ import axios from "axios";
 
 export const fetchSearchVideo = async (searchId) => {
     try {
-        const res = await axios.get(`/netlify/functions/fetchYoutubeData?q=${searchId}`, {
-            withCredentials: true,
-        });
+        const res = await axios.get(
+            `/netlify/functions/fetchYoutubeData?q=${encodeURIComponent(searchId)}`,
+            {
+                withCredentials: true,
+            }
+        );
 
         console.log("server : ", res.data);
-
-        if (res.data && res.data.items) {
-            console.log(res.data);
-            return res.data.items;
-        }
+        return res.data;
     } catch (error) {
         console.error("Client : Error fetching data => ", error);
+        throw error;
     }
 };

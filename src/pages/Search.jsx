@@ -10,7 +10,11 @@ const Search = () => {
     // const [nextPageToken, setNextPageToken] = useState(null);
 
     useEffect(() => {
-        fetchSearchVideo(searchId).then((data) => setVideos(data.items));
+        fetchSearchVideo(searchId)
+            .then((result) => setVideos(result.items))
+            .catch((error) => {
+                console.error("error fetching search results:", error);
+            });
     }, [searchId]);
 
     // const fetchMoreVideo = (query, pageToken) => {
