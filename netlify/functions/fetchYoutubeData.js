@@ -51,6 +51,10 @@ exports.handler = async (event, context) => {
             body: JSON.stringify({
                 message: "Error fetching Data. from netlify",
                 error: error.message,
+                requestConfig: {
+                    url: error.config?.url,
+                    params: error.config?.params,
+                },
             }),
         };
     }
