@@ -17,7 +17,7 @@ import axios from "axios";
 export const fetchSearchVideo = async (searchId) => {
     try {
         const res = await axios.get(
-            `/netlify/functions/fetchYoutubeData?q=${encodeURIComponent(searchId)}`,
+            `/.netlify/functions/fetchYoutubeData?q=${encodeURIComponent(searchId)}`,
             {
                 withCredentials: true,
             }
