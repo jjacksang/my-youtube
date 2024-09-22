@@ -27,7 +27,7 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        const res = await axios.post(`https://www.googleapis.com/youtube/v3/search`, {
+        const res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search`, {
             params: {
                 part: "snippet",
                 marResult: 48,
