@@ -11,11 +11,15 @@ const Search = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetchSearchVideo(searchId).then((result) => setVideos(result.items || []));
-        setIsLoading(false).catch((error) => {
-            console.error("error fetching search results:", error);
-            setIsLoading(false);
-        });
+        fetchSearchVideo(searchId)
+            .then((result) => {
+                setVideos(result.items || []);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error("error fetching search results:", error);
+                setIsLoading(false);
+            });
     }, [searchId]);
 
     console.log(videos);
