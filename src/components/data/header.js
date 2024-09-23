@@ -57,10 +57,6 @@ export const headerMenus = [
 
 export const searchKeyword = [
     {
-        title: "webstoryboy",
-        src: "/search/webstoryboy",
-    },
-    {
         title: "HTML",
         src: "/search/html",
     },
@@ -112,11 +108,6 @@ export const snsLink = [
         title: "youtube",
         url: "https://www.youtube.com/webstoryboy",
         icon: <AiFillYoutube />,
-    },
-    {
-        title: "codepen",
-        url: "https://codepen.io/webstoryboy",
-        icon: <AiOutlineCodepen />,
     },
     {
         title: "instagram",
