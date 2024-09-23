@@ -17,6 +17,8 @@ const Search = () => {
             });
     }, [searchId]);
 
+    console.log(videos);
+
     // const fetchMoreVideo = (query, pageToken) => {
     //     fetchSearchVideo();
     // };
