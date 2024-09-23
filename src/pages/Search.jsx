@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Main from "../components/section/Main";
 import { useParams } from "react-router-dom";
 import VideoSearch from "../components/videos/VIdeoSearch";
@@ -11,7 +11,7 @@ const Search = () => {
 
     useEffect(() => {
         fetchSearchVideo(searchId)
-            .then((result) => setVideos(result.items))
+            .then((result) => setVideos(result.items || []))
             .catch((error) => {
                 console.error("error fetching search results:", error);
             });
@@ -24,7 +24,9 @@ const Search = () => {
         <Main title="유투브 검색" description="유튜브 검색 결과 페이지입니다.">
             <section id="searchPage">
                 <div className="video__inner search">
-                    <VideoSearch videos={videos} />
+                    <Suspense fallback={<div>Loading...........</div>}>
+                        <VideoSearch videos={videos} />
+                    </Suspense>
                 </div>
             </section>
         </Main>
