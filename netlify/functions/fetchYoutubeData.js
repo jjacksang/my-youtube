@@ -4,6 +4,7 @@ exports.handler = async (event, context) => {
     const headers = {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
+        "Content-Type": "application/json",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     };
 
@@ -17,6 +18,8 @@ exports.handler = async (event, context) => {
 
     const api_key = process.env.YOUTUBE_API_KEY;
     const { q } = event.queryStringParameters;
+    console.log("여기다 여기 -------", api_key);
+    console.log(process.env.YOUTUBE_API_KEY);
 
     if (!q) {
         return {
@@ -28,9 +31,13 @@ exports.handler = async (event, context) => {
 
     try {
         const res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search`, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+
             params: {
                 part: "snippet",
-                marResult: 48,
+                maxResult: 48,
                 q: q,
                 type: "video",
                 key: api_key,
