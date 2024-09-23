@@ -23,7 +23,7 @@ export const fetchSearchVideo = async (searchId) => {
             }
         );
 
-        console.log("server : ", res);
+        console.log("server : ", res.data.items);
         return res;
     } catch (error) {
         console.error("Client : Error fetching data => ", error);
