@@ -13,8 +13,6 @@ const Search = () => {
         setIsLoading(true);
         fetchSearchVideo(searchId)
             .then((result) => {
-                console.log(result.items);
-                console.log(result);
                 setVideos(result.data || []);
                 setIsLoading(false);
             })
