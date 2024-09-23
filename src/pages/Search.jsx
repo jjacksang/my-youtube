@@ -15,7 +15,7 @@ const Search = () => {
             .then((result) => {
                 console.log(result.items);
                 console.log(result);
-                setVideos(result.items || []);
+                setVideos(result.data || []);
                 setIsLoading(false);
             })
             .catch((error) => {
