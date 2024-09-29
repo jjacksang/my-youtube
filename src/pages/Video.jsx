@@ -6,9 +6,10 @@ import { fetchYoutubeAPI } from "../utils/api";
 const Video = () => {
     const { videoId } = useParams();
     const [videoDetail, setVideoDetail] = useState(null);
+    console.log(videoId);
 
     useEffect(() => {
-        fetchYoutubeAPI(`videos?part=snippet,statistics&id=${videoId}`).then((data) => {
+        fetchYoutubeAPI(`videos?part=snippet,statistics&id=vmOuHO8ztJw`).then((data) => {
             console.log(data);
             setVideoDetail(data.items[0]);
         });
