@@ -9,8 +9,7 @@ const Video = () => {
     console.log(videoId);
 
     useEffect(() => {
-        fetchYoutubeAPI(`videos?part=snippet,statistics&id=vmOuHO8ztJw`).then((data) => {
-            console.log(data);
+        fetchYoutubeAPI().then((data) => {
             setVideoDetail(data.items[0]);
         });
     }, [videoId]);

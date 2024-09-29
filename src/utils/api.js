@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export const BASE_URL = "/.netlify/functions/fetchYoutubeData";
-export const fetchYoutubeAPI = async (url) => {
-    const { data } = await axios.get(`${BASE_URL}/${url}`);
+export const fetchYoutubeAPI = async (videoId) => {
+    const { data } = await axios.get(`${BASE_URL}?id=${videoId}`);
     console.log(data);
     return data;
 };
