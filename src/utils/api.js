@@ -8,8 +8,8 @@ export const fetchYoutubeAPI = async (videoId) => {
 };
 
 const options = {
-    params: {
-        maxResults: 48,
+    pageInfo: {
+        resultPerPage: 48,
     },
 };
 
@@ -19,6 +19,7 @@ export const fetchSearchVideo = async (searchId) => {
             withCredentials: true,
         });
 
+        console.log(res);
         console.log("server : ", res.data.items);
         return res;
     } catch (error) {
