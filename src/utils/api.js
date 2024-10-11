@@ -2,9 +2,9 @@ import axios from "axios";
 
 export const BASE_URL = "/.netlify/functions/fetchYoutubeData";
 export const fetchYoutubeAPI = async (videoId) => {
-    const { data } = await axios.get(`${BASE_URL}?id=${videoId}`);
-    console.log(data);
-    return data;
+    const res = await axios.get(`${BASE_URL}?id=${videoId}`);
+    console.log(res);
+    return res;
 };
 
 export const fetchSearchVideo = async (searchId) => {
@@ -13,6 +13,7 @@ export const fetchSearchVideo = async (searchId) => {
             withCredentials: true,
         });
 
+        console.log(res);
         console.log("server : ", res.data.items);
         return res;
     } catch (error) {
