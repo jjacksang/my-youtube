@@ -9,8 +9,11 @@ export const fetchYoutubeAPI = async (videoId) => {
 
 export const fetchSearchVideo = async (searchId) => {
     try {
-        const res = await axios.get(`${BASE_URL}?q=${encodeURIComponent(searchId)}&maxResults=48`, {
-            withCredentials: true,
+        const res = await axios.get(`${BASE_URL}`, {
+            params: {
+                q: encodeURIComponent(searchId),
+                maxResults: 20,
+            },
         });
 
         console.log(res);

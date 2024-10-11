@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import Main from "../components/section/Main";
 import { useParams } from "react-router-dom";
-import VideoSearch from "../components/videos/VIdeoSearch";
+import VideoSearch from "../components/videos/VideoSearch";
 import { fetchSearchVideo } from "../utils/api";
 
 const Search = () => {
