@@ -37,7 +37,7 @@ exports.handler = async (event, context) => {
 
             params: {
                 part: "snippet",
-                maxResults: maxResults,
+                maxResults: 20,
                 q: q,
                 type: "video",
                 key: api_key,
