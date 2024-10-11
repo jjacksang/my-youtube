@@ -7,17 +7,22 @@ export const fetchYoutubeAPI = async (videoId) => {
     return res;
 };
 
-export const fetchSearchVideo = async (searchId) => {
+export const fetchSearchVideo = async (searchId, maxResults = 20) => {
     try {
-        const res = await axios.get(`${BASE_URL}`, {
+        const res = await axios.get(`${BASE_URL}?q=${encodeURIComponent(searchId)}`, {
             params: {
-                q: encodeURIComponent(searchId),
-                maxResults: 20,
+                q: searchId,
+                maxResults: maxResults,
             },
         });
 
         console.log(res);
         console.log("server : ", res.data.items);
+
+        if (!res.data || !res.data.items) {
+            console.error("Unexpected response structure:", res.data);
+            throw new Error("Unexpected response structure");
+        }
         return res;
     } catch (error) {
         console.error("Client : Error fetching data => ", error);
