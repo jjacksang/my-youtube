@@ -7,15 +7,9 @@ export const fetchYoutubeAPI = async (videoId) => {
     return res;
 };
 
-const options = {
-    pageInfo: {
-        resultPerPage: 48,
-    },
-};
-
 export const fetchSearchVideo = async (searchId) => {
     try {
-        const res = await axios.get(`${BASE_URL}?q=${encodeURIComponent(searchId)}`, options, {
+        const res = await axios.get(`${BASE_URL}?q=${encodeURIComponent(searchId)}&maxResults=48`, {
             withCredentials: true,
         });
 
