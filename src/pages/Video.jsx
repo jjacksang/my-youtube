@@ -9,6 +9,7 @@ const Video = () => {
     const [videoDetail, setVideoDetail] = useState(null);
     console.log(videoId);
 
+    // 배포버전
     useEffect(() => {
         fetchYoutubeAPI(videoId).then((data) => {
             setVideoDetail(data.items[0]);
