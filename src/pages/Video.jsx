@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Main from "../components/section/Main";
 import { useParams } from "react-router-dom";
-import { fetchYoutubeAPI } from "../utils/api";
+import { fetchFromAPI } from "../utils/api";
 import ReactPlayer from "react-player";
 
 const Video = () => {
@@ -11,7 +11,7 @@ const Video = () => {
 
     // 배포버전
     useEffect(() => {
-        fetchYoutubeAPI(`videos?part=snippet,statistics&id=${videoId}`).then((data) => {
+        fetchFromAPI(`videos?part=snippet,statistics&id=${videoId}`).then((data) => {
             setVideoDetail(data.items[0]);
             console.log(data);
         });
