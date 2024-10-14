@@ -11,7 +11,7 @@ const Video = () => {
 
     // 배포버전
     useEffect(() => {
-        fetchFromAPI(`videos?part=snippet,statistics&id=${videoId}`).then((data) => {
+        fetchFromAPI(`videos?part=snippet&id=${videoId}`).then((data) => {
             setVideoDetail(data.items[0]);
             console.log(data);
         });
