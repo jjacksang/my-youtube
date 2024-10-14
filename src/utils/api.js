@@ -29,3 +29,14 @@ export const fetchSearchVideo = async (searchId, maxResults = 20) => {
         throw error;
     }
 };
+
+export const fetchFromAPI = async (url) => {
+    try {
+        const res = await axios.get(`${BASE_URL}/${url}`);
+        if (!res.ok) {
+            throw new Error("Fetch Error");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
