@@ -11,8 +11,9 @@ const Video = () => {
 
     // 배포버전
     useEffect(() => {
-        fetchYoutubeAPI(videoId).then((data) => {
+        fetchYoutubeAPI(`videos?part=snippet,statistics&id=${videoId}`).then((data) => {
             setVideoDetail(data.items[0]);
+            console.log(data);
         });
     }, [videoId]);
     return (
