@@ -11,6 +11,8 @@ const Search = () => {
 
     useEffect(() => {
         setIsLoading(true);
+
+        // 배포 버전
         fetchSearchVideo(searchId)
             .then((result) => {
                 setVideos(result.data || []);
@@ -24,9 +26,6 @@ const Search = () => {
 
     console.log(videos);
 
-    // const fetchMoreVideo = (query, pageToken) => {
-    //     fetchSearchVideo();
-    // };
     return (
         <Main title="유투브 검색" description="유튜브 검색 결과 페이지입니다.">
             <section id="searchPage">
