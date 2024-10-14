@@ -12,7 +12,7 @@ const Video = () => {
     // 배포버전
     useEffect(() => {
         fetchFromAPI(`videos?part=snippet&id=${videoId}`).then((data) => {
-            // setVideoDetail(data.items[0]);
+            setVideoDetail(data);
             console.log(data);
         });
     }, [videoId]);
