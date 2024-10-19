@@ -7,10 +7,10 @@ import ReactPlayer from "react-player";
 const Video = () => {
     const { videoId } = useParams();
     const [videoDetail, setVideoDetail] = useState(null);
-    console.log(videoId);
 
     // 배포버전
     useEffect(() => {
+        console.log(videoId);
         fetchVideoData(videoId).then((data) => {
             setVideoDetail(data);
             console.log(data);
