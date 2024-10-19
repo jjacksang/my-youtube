@@ -31,7 +31,7 @@ const Video = () => {
                             />
                         </div>
                         <div>
-                            <h2>{videoDetail.snippet.title}</h2>
+                            <h2>{videoDetail.items.snippet.title}</h2>
                         </div>
                     </div>
                 )}
