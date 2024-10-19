@@ -17,11 +17,11 @@ exports.handler = async (event, context) => {
     }
 
     const api_key = process.env.YOUTUBE_API_KEY;
-    const { q } = event.queryStringParameters;
+    const { q, videoId } = event.queryStringParameters;
     console.log("여기다 여기 -------", api_key);
     console.log(process.env.YOUTUBE_API_KEY);
 
-    if (!q) {
+    if (!q && !videoId) {
         return {
             statusCode: 400,
             headers,
@@ -30,19 +30,33 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        const res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search`, {
-            headers: {
-                "Content-Type": "application/json",
-            },
+        let res;
+        if (q) {
+            res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
 
-            params: {
-                part: "snippet",
-                maxResults: 20,
-                q: q,
-                type: "video",
-                key: api_key,
-            },
-        });
+                params: {
+                    part: "snippet",
+                    maxResults: 20,
+                    q: q,
+                    type: "video",
+                    key: api_key,
+                },
+            });
+        } else if (videoId) {
+            res = await axios.get(`https://youtube.googleapis.com/youtube/v3/videos`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                params: {
+                    part: "snippet, statistics",
+                    id: videoId,
+                    key: api_key,
+                },
+            });
+        }
 
         console.log(res.data);
         return {
