@@ -30,7 +30,7 @@ export const fetchSearchVideo = async (searchId, maxResults = 20) => {
     }
 };
 
-export const fetchVideoData = async ({ videoId }) => {
+export const fetchVideoData = async (videoId) => {
     console.log(videoId);
     try {
         const res = await axios.get(`/.netlify/functions/fetchYoutubeData?videoId=${videoId}`);
