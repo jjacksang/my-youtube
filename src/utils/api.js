@@ -30,13 +30,10 @@ export const fetchSearchVideo = async (searchId, maxResults = 20) => {
     }
 };
 
-export const fetchFromAPI = async (url) => {
+export const fetchVideoData = async ({ videoId }) => {
     try {
-        const res = await axios.get(`${BASE_URL}/${url}`);
-        if (!res.ok) {
-            throw new Error("Fetch Error");
-        }
+        const res = await axios.get(`/.netlify/functions/fetchYoutubeData?videoId=${videoId}`);
     } catch (error) {
-        console.error(error);
+        console.error("Video > Error fetching video data :", error);
     }
 };

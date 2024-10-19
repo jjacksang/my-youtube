@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Main from "../components/section/Main";
 import { useParams } from "react-router-dom";
-import { fetchFromAPI } from "../utils/api";
+import { fetchVideoData } from "../utils/api";
 import ReactPlayer from "react-player";
 
 const Video = () => {
@@ -11,7 +11,7 @@ const Video = () => {
 
     // 배포버전
     useEffect(() => {
-        fetchFromAPI(`videos?part=snippet&id=${videoId}`).then((data) => {
+        fetchVideoData(videoId).then((data) => {
             setVideoDetail(data);
             console.log(data);
         });
