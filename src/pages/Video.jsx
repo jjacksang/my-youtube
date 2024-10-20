@@ -13,7 +13,8 @@ const Video = () => {
         console.log(videoId);
         fetchVideoData(videoId).then((data) => {
             setVideoDetail(data);
-            console.log(data);
+            console.log(data.data.items);
+            console.log(data.data.items.snippet);
         });
     }, [videoId]);
     return (
