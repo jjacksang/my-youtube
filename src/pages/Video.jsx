@@ -25,14 +25,14 @@ const Video = () => {
                         <div>
                             <ReactPlayer
                                 playing={true}
-                                url={`https://www.youtube.com/watch?v=${videoId}`}
+                                url={`https://www.youtube.com/watch?v=${videoDetail.id}`}
                                 width="100%"
                                 height="100%"
                                 style={{ position: "absolute", top: 0, left: 0 }}
                             />
                         </div>
                         <div>
-                            <h2>{videoDetail.data.items[0].snippet.title}</h2>
+                            <h2>{videoDetail.snippet.title}</h2>
                         </div>
                     </div>
                 )}
