@@ -12,9 +12,9 @@ const Video = () => {
     useEffect(() => {
         console.log(videoId);
         fetchVideoData(videoId).then((data) => {
-            setVideoDetail(data);
-            console.log(data.data.items);
-            console.log(data.data.items.snippet);
+            setVideoDetail(data.data.items[0]);
+            console.log(data.data.items[0]);
+            console.log(data.data.items[0].snippet);
         });
     }, [videoId]);
     return (
@@ -32,7 +32,7 @@ const Video = () => {
                             />
                         </div>
                         <div>
-                            <h2>{videoDetail.data.items.snippet.title}</h2>
+                            <h2>{videoDetail.data.items[0].snippet.title}</h2>
                         </div>
                     </div>
                 )}
