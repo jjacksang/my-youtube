@@ -2,8 +2,15 @@ import React, { Suspense, useEffect, useState } from "react";
 import Main from "../components/section/Main";
 import { useParams } from "react-router-dom";
 import VideoSearch from "../components/videos/VideoSearch";
-import VideoSkellton from "../components/skelleton/VideoSkellton";
+import VideoSkeleton from "../components/skeleton/video-skeleton";
 import { fetchSearchVideo } from "../utils/api";
+
+// Skeleton 16개 기준 생성
+const SkeletonList = ({ count }) => {
+    return new Array(count)
+        .fill(0)
+        .map((_, idx) => <VideoSkeleton key={`video-skeleton-${idx}`} />);
+};
 
 const Search = () => {
     const { searchId } = useParams();
@@ -33,7 +40,7 @@ const Search = () => {
                 <div className="video__inner search">
                     {isLoading ? (
                         <>
-                            <VideoSkellton />
+                            <SkeletonList count={16} />
                         </>
                     ) : (
                         <Suspense fallback={<div>Loading...........</div>}>
