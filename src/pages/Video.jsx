@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import Main from "../components/section/Main";
 import { Link, useParams } from "react-router-dom";
 import { fetchVideoData } from "../utils/api";
+
 import ReactPlayer from "react-player";
+
+import { CiChat1, CiStar, CiRead } from "react-icons/ci";
 
 const Video = () => {
     const { videoId } = useParams();
@@ -36,9 +39,16 @@ const Video = () => {
                                     <Link to="/chanel">{videoDetail.snippet.chanlTitle}</Link>
                                 </div>
                                 <div className="count">
-                                    <span className="view">{videoDetail.statistics.viewCount}</span>
-                                    <span className="like">{videoDetail.statistics.likeCount}</span>
+                                    <span className="view">
+                                        <CiRead />
+                                        {videoDetail.statistics.viewCount}
+                                    </span>
+                                    <span className="like">
+                                        <CiStar />
+                                        {videoDetail.statistics.likeCount}
+                                    </span>
                                     <span className="comment">
+                                        <CiChat1 />
                                         {videoDetail.statistics.commentCount}
                                     </span>
                                 </div>
