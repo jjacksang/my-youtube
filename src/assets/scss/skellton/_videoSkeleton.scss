@@ -23,7 +23,7 @@
 .video__inner.search {
     min-height: 100vh;
 
-    .video {
+    .video__skeleton {
         margin-bottom: 40px;
         border-radius: 10px;
         background-color: #111;
@@ -32,8 +32,8 @@
             margin-bottom: 10px;
         }
 
-        .video__thumb {
-            .video_skellton {
+        .skeleton__thumb {
+            .skeleton__skeleton {
                 position: relative;
                 display: block;
                 width: 100%;
@@ -41,10 +41,12 @@
                 position: relative;
                 background-size: cover;
                 background-position: center;
+                background-color: #161616;
+                border-radius: 10px;
             }
         }
 
-        .video__info {
+        .skeleton__info {
             padding: 10px 15px;
             color: #fff;
         }
