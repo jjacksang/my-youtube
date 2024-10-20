@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import Main from "../components/section/Main";
 import { useParams } from "react-router-dom";
 import VideoSearch from "../components/videos/VideoSearch";
+import VideoSkellton from "../components/skelleton/VideoSkellton";
 import { fetchSearchVideo } from "../utils/api";
 
 const Search = () => {
@@ -31,7 +32,9 @@ const Search = () => {
             <section id="searchPage">
                 <div className="video__inner search">
                     {isLoading ? (
-                        <div>Loading... </div>
+                        <>
+                            <VideoSkellton />
+                        </>
                     ) : (
                         <Suspense fallback={<div>Loading...........</div>}>
                             <VideoSearch videos={videos} />
