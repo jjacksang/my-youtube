@@ -62,7 +62,7 @@ exports.handler = async (event, context) => {
                     "Content-Type": "application/json",
                 },
                 params: {
-                    part: "snippet",
+                    part: "snippet, statistics",
                     id: channelId,
                     key: api_key,
                 },
