@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BASE_URL = "/.netlify/functions";
+export const BASE_URL = "/.netlify/functions/fetchYoutubeData";
 export const fetchYoutubeAPI = async (videoId) => {
     const res = await axios.get(`${BASE_URL}?id=${videoId}`);
     console.log(res);
@@ -9,15 +9,12 @@ export const fetchYoutubeAPI = async (videoId) => {
 
 export const fetchSearchVideo = async (searchId, maxResults = 20) => {
     try {
-        const res = await axios.get(
-            `${BASE_URL}/fetchYoutubeData?q=${encodeURIComponent(searchId)}`,
-            {
-                params: {
-                    q: searchId,
-                    maxResults: maxResults,
-                },
-            }
-        );
+        const res = await axios.get(`${BASE_URL}?q=${encodeURIComponent(searchId)}`, {
+            params: {
+                q: searchId,
+                maxResults: maxResults,
+            },
+        });
 
         console.log(res);
         console.log("server : ", res.data.items);
@@ -36,7 +33,7 @@ export const fetchSearchVideo = async (searchId, maxResults = 20) => {
 export const fetchVideoData = async (videoId) => {
     console.log(videoId);
     try {
-        const res = await axios.get(`${BASE_URL}/fetchYoutubeData?videoId=${videoId}`);
+        const res = await axios.get(`${BASE_URL}?videoId=${videoId}`);
         return res.data;
     } catch (error) {
         console.error("Video > Error fetching video data :", error);
@@ -45,9 +42,7 @@ export const fetchVideoData = async (videoId) => {
 
 export const fetchChannel = async (channelId) => {
     try {
-        const res = await axios.get(
-            `${BASE_URL}/fetchChannel?channels?part=snippet&id=${channelId}`
-        );
+        const res = await axios.get(`${BASE_URL}?channels=${channelId}`);
         console.log(res.data);
 
         return res.data;
