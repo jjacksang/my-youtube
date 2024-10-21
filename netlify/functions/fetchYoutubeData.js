@@ -56,6 +56,17 @@ exports.handler = async (event, context) => {
                     key: api_key,
                 },
             });
+        } else if (channelId) {
+            res = await axios.get(`https://youtube.googleapis.com/youtube/v3/channels`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                params: {
+                    part: "snippet, statistics",
+                    id: channelId,
+                    key: api_key,
+                },
+            });
         }
 
         console.log(res.data);

@@ -48,10 +48,8 @@ export const fetchChannel = async (channelId) => {
         const res = await axios.get(
             `${BASE_URL}/fetchChannel?channels?part=snippet&id=${channelId}`
         );
+        console.log(res);
 
-        if (!res.ok) {
-            throw new Error();
-        }
         return res;
     } catch (error) {
         console.error("Channel > Error fetching channel data: ", error);
