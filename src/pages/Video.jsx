@@ -15,7 +15,7 @@ const Video = () => {
     useEffect(() => {
         console.log(videoId);
         fetchVideoData(videoId).then((data) => {
-            setVideoDetail(data.data.items[0]);
+            setVideoDetail(data.items[0]);
         });
     }, [videoId]);
     return (
