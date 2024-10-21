@@ -37,7 +37,7 @@ export const fetchVideoData = async (videoId) => {
     console.log(videoId);
     try {
         const res = await axios.get(`${BASE_URL}/fetchYoutubeData?videoId=${videoId}`);
-        return res;
+        return res.data;
     } catch (error) {
         console.error("Video > Error fetching video data :", error);
     }
@@ -48,9 +48,9 @@ export const fetchChannel = async (channelId) => {
         const res = await axios.get(
             `${BASE_URL}/fetchChannel?channels?part=snippet&id=${channelId}`
         );
-        console.log(res);
+        console.log(res.data);
 
-        return res;
+        return res.data;
     } catch (error) {
         console.error("Channel > Error fetching channel data: ", error);
     }
