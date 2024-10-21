@@ -42,7 +42,7 @@ export const fetchVideoData = async (videoId) => {
 
 export const fetchChannel = async (channelId) => {
     try {
-        const res = await axios.get(`${BASE_URL}?channels?id=${channelId}`);
+        const res = await axios.get(`${BASE_URL}?channelId=${channelId}`);
         console.log(res.data);
 
         return res.data;
