@@ -22,7 +22,7 @@ const Channel = () => {
                     <div
                         className="channel__header"
                         style={{
-                            backgroundImage: `url(${channelDetail.thumbnails.default.url})`,
+                            backgroundImage: `url(${channelDetail.snippet.thumbnails.medium.url})`,
                         }}
                     >
                         <div className="circle">
