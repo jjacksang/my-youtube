@@ -22,12 +22,12 @@ const Channel = () => {
                     <div
                         className="channel__header"
                         style={{
-                            backgroundImage: `url(${channelDetail.brandingSetting.image.bannerExternalUrl})`,
+                            backgroundImage: `url(${channelDetail.thumbnails.default.url})`,
                         }}
                     >
                         <div className="circle">
                             <img
-                                src={channelDetail.snippet.thimbnails.high.url}
+                                src={channelDetail.snippet.thumbnails.high.url}
                                 alt={channelDetail.snippet.title}
                             />
                         </div>
