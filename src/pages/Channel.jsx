@@ -17,22 +17,32 @@ const Channel = () => {
 
     return (
         <Main title="유튜브 채널" description="유튜브 채널페이지입니다.">
-            <section id="channel">
-                <div className="channel__header" style={{ backgroundImage: `` }}>
-                    <div className="circle">
-                        <img />
+            {channelDetail && (
+                <section id="channel">
+                    <div
+                        className="channel__header"
+                        style={{
+                            backgroundImage: `url(${channelDetail.brandingSetting.image.bannerExternalUrl})`,
+                        }}
+                    >
+                        <div className="circle">
+                            <img
+                                src={channelDetail.snippet.thimbnails.high.url}
+                                alt={channelDetail.snippet.title}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="channel__info">
-                    <h3 className="title">title{channelDetail}</h3>
-                    <p className="desc">PPPPPP</p>
-                    <div className="info">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div className="channel__info">
+                        <h3 className="title">{channelDetail.snippet.title}</h3>
+                        <p className="desc">{channelDetail.snippet.description}</p>
+                        <div className="info">
+                            <span>{channelDetail.statistics.subscriberCount}</span>
+                            <span>{channelDetail.statistics.videoCount}</span>
+                            <span>{channelDetail.statistics.viewCount}</span>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
         </Main>
     );
 };
