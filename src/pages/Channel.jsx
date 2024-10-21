@@ -24,7 +24,7 @@ const Channel = () => {
                     </div>
                 </div>
                 <div className="channel__info">
-                    <h3 className="title">title</h3>
+                    <h3 className="title">title{channelDetail}</h3>
                     <p className="desc">PPPPPP</p>
                     <div className="info">
                         <span></span>
