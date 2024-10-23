@@ -23,8 +23,8 @@ const Channel = () => {
                 return fetchChannelVideo(channelId, "playlist");
             })
             .then((videoData) => {
-                setChannelVideos(videoData.data);
-                setNextPageToken(videoData.data?.nextPageToken);
+                setChannelVideos({ items: videoData.items || [] });
+                setNextPageToken(videoData.nextPageToken);
             });
     }, [channelId]);
 
@@ -36,10 +36,10 @@ const Channel = () => {
                 const videoData = await fetchChannelVideo(channelId, "playlist", nextPageToken);
 
                 if (videoData?.data?.items) {
-                    setChannelVideos((prev) => {
-                        const prevItems = Array.isArray(prev) ? prev : [];
-                        return [...prevItems, ...videoData.data.items];
-                    });
+                    setChannelVideos((prev) => ({
+                        ...prev,
+                        items: [...prev, ...videoData.items],
+                    }));
                 }
             } catch (error) {
                 console.error("PrevItems is not defiend", error);

@@ -65,8 +65,8 @@ export const fetchChannelVideo = async (channelId, searchType, nextPageToken) =>
                 nextPageToken: nextPageToken || undefined,
             },
         });
-        console.log(res);
-        return res;
+        console.log(res.data);
+        return res.data;
     } catch (error) {
         console.error("Channel Data > Error fetching channel data: ", error);
         throw error;
