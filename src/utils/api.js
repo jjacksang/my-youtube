@@ -37,6 +37,7 @@ export const fetchVideoData = async (videoId) => {
         return res.data;
     } catch (error) {
         console.error("Video > Error fetching video data :", error);
+        throw error;
     }
 };
 
@@ -47,11 +48,26 @@ export const fetchChannel = async (channelId) => {
                 channelId: channelId,
             },
         });
-        console.log(res.data);
 
         return res.data;
     } catch (error) {
         console.error("Channel > Error fetching channel data: ", error);
+        throw error;
+    }
+};
+
+export const fetchChannelVideo = async (channelId, searchType) => {
+    try {
+        const res = await axios.get(`${BASE_URL}`, {
+            params: {
+                channelId: channelId,
+                searchType: searchType,
+            },
+        });
+        console.log(res);
+        return res;
+    } catch (error) {
+        console.error("Channel Data > Error fetching channel data: ", error);
         throw error;
     }
 };

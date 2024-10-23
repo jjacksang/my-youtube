@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Main from "../components/section/Main";
 import { useParams } from "react-router-dom";
-import { fetchChannel } from "../utils/api";
+import { fetchChannel, fetchChannelVideo } from "../utils/api";
 
 const Channel = () => {
     const { channelId } = useParams();
     const [channelDetail, setChannelDetail] = useState();
+    const [channelVideos, setChannelVideos] = useState([]);
 
     console.log(channelId);
 
     useEffect(() => {
-        fetchChannel(channelId).then((data) => {
-            setChannelDetail(data.items[0]);
-        });
+        fetchChannel(channelId)
+            .then((data) => {
+                setChannelDetail(data.items[0]);
+
+                return fetchChannelVideo(channelId, "playlist");
+            })
+            .then((videoData) => {
+                setChannelVideos(videoData.items);
+            });
     }, [channelId]);
 
     return (
