@@ -144,3 +144,60 @@
         }
     }
 }
+
+// Video Skeleton
+
+.video__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 24%);
+    justify-content: space-between;
+
+    @media (max-width: 1400px) {
+        grid-template-columns: repeat(3, 32%);
+        gap: 15px;
+    }
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(2, 49%);
+        gap: 10px;
+    }
+    @media (max-width: 400px) {
+        grid-template-columns: repeat(1, 100%);
+    }
+
+    .video {
+        margin-bottom: 20px;
+    }
+}
+
+.video__inner.search {
+    min-height: 100vh;
+
+    .video__skeleton {
+        margin-bottom: 40px;
+        border-radius: 10px;
+        background-color: #111;
+
+        @media (max-width: 600px) {
+            margin-bottom: 10px;
+        }
+
+        .skeleton__thumb {
+            .skeleton__skeleton {
+                position: relative;
+                display: block;
+                width: 100%;
+                padding-bottom: 56.25%;
+                position: relative;
+                background-size: cover;
+                background-position: center;
+                background-color: #161616;
+                border-radius: 10px;
+            }
+        }
+
+        .skeleton__info {
+            padding: 10px 15px;
+            color: #fff;
+        }
+    }
+}
