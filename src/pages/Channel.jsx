@@ -10,6 +10,7 @@ const Channel = () => {
     const { channelId } = useParams();
     const [channelDetail, setChannelDetail] = useState();
     const [channelVideos, setChannelVideos] = useState([]);
+    const [nextPageToken, setNextPageToken] = useState(null);
 
     console.log(channelId);
 
@@ -22,8 +23,16 @@ const Channel = () => {
             })
             .then((videoData) => {
                 setChannelVideos(videoData.data);
+                setNextPageToken(videoData.data?.nextPageToken);
             });
     }, [channelId]);
+
+    const loadMoreVideo = async () => {
+        if (nextPageToken) {
+            const videoData = await fetchChannelVideo(channelId, nextPageToken);
+            setChannelVideos((prev) => [...prev, ...videoData.data.items]);
+        }
+    };
 
     return (
         <Main title="유튜브 채널" description="유튜브 채널페이지입니다.">
@@ -62,6 +71,9 @@ const Channel = () => {
                     </div>
                     <div className="channel__video video__inner search">
                         <VideoSearch videos={channelVideos} />
+                    </div>
+                    <div className="channel__more">
+                        {nextPageToken && <button onClick={loadMoreVideo}>더 보기</button>}
                     </div>
                 </section>
             )}
