@@ -20,7 +20,7 @@ const Channel = () => {
                 return fetchChannelVideo(channelId, "playlist");
             })
             .then((videoData) => {
-                setChannelVideos(videoData);
+                setChannelVideos(videoData.data);
             });
     }, [channelId]);
 
