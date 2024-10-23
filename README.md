@@ -12,6 +12,13 @@ YouTube Data API를 활용하여 외부 데이터를 가져오는 방법을 익�
 -   utils/api.js 파일 내에 예외 처리문 추가 작성
 -   netlify/functions/fetchYoutubeData.js에 작성되어 있는 maxResult => maxResults로 오타 수정
 
+2. style.scss에 **skeleton.scss를 적용 이후 **channel.scss를 추가하니 모듈을 추가할 수 없는 오류 발생
+
+**해결 과정**
+
+-   skeleton.scss에 있는 코드를 \_\_video.scss로 옮김
+-   주석을 통해 skeleton에 적용될 코드를 분리
+
 ## 완성작 보기
 
 미리보기 :
