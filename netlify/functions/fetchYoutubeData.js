@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     }
 
     const api_key = process.env.YOUTUBE_API_KEY;
-    const { q, videoId, channelId, searchType } = event.queryStringParameters;
+    const { q, videoId, channelId, searchType, nextPageToken } = event.queryStringParameters;
     console.log("여기다 여기 -------", api_key);
     console.log(process.env.YOUTUBE_API_KEY);
 
@@ -42,6 +42,7 @@ exports.handler = async (event, context) => {
                     maxResults: 20,
                     q: q,
                     type: "video",
+                    nextPageToken: nextPageToken || undefined,
                     key: api_key,
                 },
             });
@@ -82,6 +83,7 @@ exports.handler = async (event, context) => {
                     type: "playlist",
                     maxResults: 20,
                     order: "date",
+                    nextPageToken: nextPageToken || undefined,
                     key: api_key,
                 },
             });
