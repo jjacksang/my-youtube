@@ -24,9 +24,10 @@ const Channel = () => {
             .then((videoData) => {
                 setChannelVideos(videoData.data);
                 setNextPageToken(videoData.data?.nextPageToken);
-                console.log(nextPageToken);
             });
     }, [channelId]);
+
+    console.log(nextPageToken);
 
     const loadMoreVideo = async () => {
         if (nextPageToken) {
