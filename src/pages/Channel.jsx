@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Main from "../components/section/Main";
 import { useParams } from "react-router-dom";
 import { fetchChannel, fetchChannelVideo } from "../utils/api";
 
+import Main from "../components/section/Main";
 import VideoSearch from "../components/videos/VideoSearch";
+
 import { CiRead, CiBadgeDollar, CiMedal } from "react-icons/ci";
 
 const Channel = () => {
@@ -31,8 +32,18 @@ const Channel = () => {
 
     const loadMoreVideo = async () => {
         if (nextPageToken) {
-            const videoData = await fetchChannelVideo(channelId, "playlist", nextPageToken);
-            setChannelVideos((prev) => [...prev, ...videoData.data.items]);
+            try {
+                const videoData = await fetchChannelVideo(channelId, "playlist", nextPageToken);
+
+                if (videoData?.data?.items) {
+                    setChannelVideos((prev) => {
+                        const prevItems = Array.isArray(prev) ? prev : [];
+                        return [...prevItems, ...videoData.data.items];
+                    });
+                }
+            } catch (error) {
+                console.error("PrevItems is not defiend", error);
+            }
         }
     };
 
