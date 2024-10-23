@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     }
 
     const api_key = process.env.YOUTUBE_API_KEY;
-    const { q, videoId, channelId } = event.queryStringParameters;
+    const { q, videoId, channelId, searchType } = event.queryStringParameters;
     console.log("여기다 여기 -------", api_key);
     console.log(process.env.YOUTUBE_API_KEY);
 
@@ -31,34 +31,19 @@ exports.handler = async (event, context) => {
 
     try {
         let res;
-        if (q || (channelId && searchType === "playlist")) {
-            const params = {
-                part: "snippet",
-                maxResults: 20,
-                q: q,
-                type: "video",
-                key: api_key,
-            };
-
-            // 일반 검색
-            if (q) {
-                params.q = q;
-                params.type = "video";
-            }
-
-            // 채널 재생목록 검색
-            if (channelId && searchType === "playlist") {
-                params.channelId = channelId;
-                params.type = "playlist";
-                params.order = "date";
-                delete params.q;
-            }
-
+        // 일단 검색
+        if (q && !searchType) {
             res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                params,
+                params: {
+                    part: "snippet",
+                    maxResults: 20,
+                    q: q,
+                    type: "video",
+                    key: api_key,
+                },
             });
 
             // 비디오 검색 기능
@@ -83,6 +68,20 @@ exports.handler = async (event, context) => {
                 params: {
                     part: "snippet, statistics",
                     id: channelId,
+                    key: api_key,
+                },
+            });
+        } else if (channelId && searchType === "playlist") {
+            res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                params: {
+                    part: "snippet",
+                    channelId: channelId,
+                    type: "playlist",
+                    maxResults: 20,
+                    order: "date",
                     key: api_key,
                 },
             });
