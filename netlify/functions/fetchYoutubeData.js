@@ -31,20 +31,37 @@ exports.handler = async (event, context) => {
 
     try {
         let res;
-        if (q) {
+        if (q || (channelId && searchType === "playlist")) {
+            const params = {
+                part: "snippet",
+                maxResults: 20,
+                q: q,
+                type: "video",
+                key: api_key,
+            };
+
+            // 일반 검색
+            if (q) {
+                params.q = q;
+                params.type = "video";
+            }
+
+            // 채널 재생목록 검색
+            if (channelId && searchType === "playlist") {
+                params.channelId = channelId;
+                params.type = "playlist";
+                params.order = "date";
+                delete params.q;
+            }
+
             res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
-
-                params: {
-                    part: "snippet",
-                    maxResults: 20,
-                    q: q,
-                    type: "video",
-                    key: api_key,
-                },
+                params,
             });
+
+            // 비디오 검색 기능
         } else if (videoId) {
             res = await axios.get(`https://youtube.googleapis.com/youtube/v3/videos`, {
                 headers: {
@@ -56,7 +73,9 @@ exports.handler = async (event, context) => {
                     key: api_key,
                 },
             });
-        } else if (channelId) {
+
+            // 채널 정보 조회
+        } else if (channelId && !searchType) {
             res = await axios.get(`https://youtube.googleapis.com/youtube/v3/channels`, {
                 headers: {
                     "Content-Type": "application/json",
