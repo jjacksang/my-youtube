@@ -45,6 +45,7 @@ export const fetchChannel = async (channelId) => {
         const res = await axios.get(`${BASE_URL}`, {
             params: {
                 channelId: channelId,
+                searchType: "",
             },
         });
         console.log(res.data);
