@@ -3,6 +3,8 @@ import Main from "../components/section/Main";
 import { useParams } from "react-router-dom";
 import { fetchChannel, fetchChannelVideo } from "../utils/api";
 
+import VideoSearch from "../components/videos/VideoSearch";
+
 const Channel = () => {
     const { channelId } = useParams();
     const [channelDetail, setChannelDetail] = useState();
@@ -47,6 +49,9 @@ const Channel = () => {
                             <span>{channelDetail.statistics.videoCount}</span>
                             <span>{channelDetail.statistics.viewCount}</span>
                         </div>
+                    </div>
+                    <div>
+                        <VideoSearch videos={channelVideos} />
                     </div>
                 </section>
             )}
