@@ -56,12 +56,13 @@ export const fetchChannel = async (channelId) => {
     }
 };
 
-export const fetchChannelVideo = async (channelId, searchType) => {
+export const fetchChannelVideo = async (channelId, searchType, nextPageToken) => {
     try {
         const res = await axios.get(`${BASE_URL}`, {
             params: {
                 channelId: channelId,
                 searchType: searchType,
+                nextPageToken: nextPageToken || undefined,
             },
         });
         console.log(res);
