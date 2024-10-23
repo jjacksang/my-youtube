@@ -24,6 +24,7 @@ const Channel = () => {
             .then((videoData) => {
                 setChannelVideos(videoData.data);
                 setNextPageToken(videoData.data?.nextPageToken);
+                console.log(nextPageToken);
             });
     }, [channelId]);
 
