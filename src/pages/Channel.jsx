@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchChannel, fetchChannelVideo } from "../utils/api";
 
 import VideoSearch from "../components/videos/VideoSearch";
+import { CiRead, CiBadgeDollar, CiMedal } from "react-icons/ci";
 
 const Channel = () => {
     const { channelId } = useParams();
@@ -45,12 +46,21 @@ const Channel = () => {
                         <h3 className="title">{channelDetail.snippet.title}</h3>
                         <p className="desc">{channelDetail.snippet.description}</p>
                         <div className="info">
-                            <span>{channelDetail.statistics.subscriberCount}</span>
-                            <span>{channelDetail.statistics.videoCount}</span>
-                            <span>{channelDetail.statistics.viewCount}</span>
+                            <span>
+                                <CiBadgeDollar />
+                                {channelDetail.statistics.subscriberCount}
+                            </span>
+                            <span>
+                                <CiMedal />
+                                {channelDetail.statistics.videoCount}
+                            </span>
+                            <span>
+                                <CiRead />
+                                {channelDetail.statistics.viewCount}
+                            </span>
                         </div>
                     </div>
-                    <div>
+                    <div className="channel__video video__inner search">
                         <VideoSearch videos={channelVideos} />
                     </div>
                 </section>
