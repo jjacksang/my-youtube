@@ -16,6 +16,7 @@ const Search = () => {
     const { searchId } = useParams();
     const [videos, setVideos] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [nextPageToken, setNextPageToken] = useState(null);
 
     useEffect(() => {
         setIsLoading(true);
@@ -25,6 +26,7 @@ const Search = () => {
             .then((result) => {
                 setVideos(result.data || []);
                 setIsLoading(false);
+                setNextPageToken(result.data.nextPageToken);
             })
             .catch((error) => {
                 console.error("error fetching search results:", error);
@@ -33,6 +35,18 @@ const Search = () => {
     }, [searchId]);
 
     console.log(videos);
+
+    const handleLoadMore = async () => {
+        if (nextPageToken) {
+            try {
+                const videoData = await fetchSearchVideo(searchId, nextPageToken).then((data) => {
+                    setVideos({ items: videoData.data.tiems });
+                });
+            } catch (error) {
+                console.error("VideoMore Error : ", error);
+            }
+        }
+    };
 
     return (
         <Main title="유투브 검색" description="유튜브 검색 결과 페이지입니다.">
@@ -47,6 +61,9 @@ const Search = () => {
                             <VideoSearch videos={videos} />
                         </Suspense>
                     )}
+                </div>
+                <div className="video__more">
+                    {nextPageToken && <button onClick={handleLoadMore}>더보기</button>}
                 </div>
             </section>
         </Main>

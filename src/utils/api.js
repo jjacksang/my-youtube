@@ -7,12 +7,13 @@ export const fetchYoutubeAPI = async (videoId) => {
     return res;
 };
 
-export const fetchSearchVideo = async (searchId, maxResults = 20) => {
+export const fetchSearchVideo = async (searchId, maxResults = 20, nextPageToken) => {
     try {
         const res = await axios.get(`${BASE_URL}?q=${encodeURIComponent(searchId)}`, {
             params: {
                 q: searchId,
                 maxResults: maxResults,
+                nextPageToken: nextPageToken || undefined,
             },
         });
 
