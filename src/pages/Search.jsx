@@ -24,7 +24,7 @@ const Search = () => {
         // 배포 버전
         fetchSearchVideo(searchId)
             .then((result) => {
-                setVideos(result || []);
+                setVideos({ items: result.items || [] });
                 setIsLoading(false);
                 setNextPageToken(result.nextPageToken);
             })
