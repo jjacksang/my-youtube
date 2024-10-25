@@ -39,7 +39,11 @@ const Search = () => {
     const handleLoadMore = async () => {
         if (nextPageToken) {
             try {
-                const videoData = await fetchSearchVideo(searchId, nextPageToken);
+                const videoData = await fetchSearchVideo(
+                    searchId,
+                    (maxResults += 20),
+                    nextPageToken
+                );
 
                 if (videoData?.items) {
                     setVideos((prev) => ({
