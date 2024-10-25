@@ -17,14 +17,13 @@ export const fetchSearchVideo = async (searchId, maxResults = 20, nextPageToken)
             },
         });
 
-        console.log(res);
         console.log("server : ", res.data.items);
 
         if (!res.data || !res.data.items) {
             console.error("Unexpected response structure:", res.data);
             throw new Error("Unexpected response structure");
         }
-        return res;
+        return res.data;
     } catch (error) {
         console.error("Client : Error fetching data => ", error);
         throw error;

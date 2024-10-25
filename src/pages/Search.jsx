@@ -24,9 +24,9 @@ const Search = () => {
         // 배포 버전
         fetchSearchVideo(searchId)
             .then((result) => {
-                setVideos(result.data || []);
+                setVideos(result || []);
                 setIsLoading(false);
-                setNextPageToken(result.data.nextPageToken);
+                setNextPageToken(result.nextPageToken);
             })
             .catch((error) => {
                 console.error("error fetching search results:", error);
@@ -39,9 +39,14 @@ const Search = () => {
     const handleLoadMore = async () => {
         if (nextPageToken) {
             try {
-                const videoData = await fetchSearchVideo(searchId, nextPageToken).then((data) => {
-                    setVideos({ items: videoData.data.tiems });
-                });
+                const videoData = await fetchSearchVideo(searchId, nextPageToken);
+
+                if (videoData?.items) {
+                    setVideos((prev) => ({
+                        ...prev,
+                        items: [...prev, ...videoData.items],
+                    }));
+                }
             } catch (error) {
                 console.error("VideoMore Error : ", error);
             }
