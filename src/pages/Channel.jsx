@@ -40,7 +40,7 @@ const Channel = () => {
                 console.log(">>>New Items: ", videoData.items.length);
                 console.log(">>>New NextPageToken: ", videoData.nextPageToken);
 
-                if (videoData?.items) {
+                if (videoData?.data?.items) {
                     setChannelVideos((prev) => ({
                         ...prev,
                         items: [...prev, ...videoData.items],
