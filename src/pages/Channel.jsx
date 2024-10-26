@@ -43,7 +43,7 @@ const Channel = () => {
                 if (videoData?.data?.items) {
                     setChannelVideos((prev) => ({
                         ...prev,
-                        items: [...prev, ...videoData.items],
+                        items: [...prev, ...videoData.data.items],
                     }));
                 }
 
