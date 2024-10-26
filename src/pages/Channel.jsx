@@ -33,9 +33,14 @@ const Channel = () => {
     const loadMoreVideo = async () => {
         if (nextPageToken) {
             try {
+                console.log(">>> nextPageToken: ", nextPageToken);
                 const videoData = await fetchChannelVideo(channelId, "playlist", nextPageToken, 20);
 
-                if (videoData?.data?.items) {
+                console.log(">>>Prev Items: ", channelVideos.items.length);
+                console.log(">>>New Items: ", videoData.items.length);
+                console.log(">>>New NextPageToken: ", videoData.nextPageToken);
+
+                if (videoData?.items) {
                     setChannelVideos((prev) => ({
                         ...prev,
                         items: [...prev, ...videoData.items],
