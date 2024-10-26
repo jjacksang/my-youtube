@@ -73,6 +73,9 @@ exports.handler = async (event, context) => {
                 },
             });
         } else if (channelId && searchType === "playlist") {
+            const pageToken = event.queryStringParameters.nextPageToken;
+            console.log(">> This is pageToken: ", pageToken);
+
             res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search`, {
                 headers: {
                     "Content-Type": "application/json",
@@ -83,12 +86,15 @@ exports.handler = async (event, context) => {
                     type: "playlist",
                     maxResults: event.queryStringParameters.maxResults || 20,
                     order: "date",
-                    nextPageToken: nextPageToken || undefined,
+                    pageToken: pageToken || undefined,
                     key: api_key,
                 },
             });
         }
 
+        console.log(">> Response pageInfo: ", res.data.pageInfo);
+        console.log(">> Response nextPageToken: ", res.data.nextPageToken);
+        console.log(">> First items response: ", res.data.items[0]?.snippet?.title);
         console.log(res.data);
         return {
             statusCode: 200,

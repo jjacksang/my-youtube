@@ -46,6 +46,8 @@ const Channel = () => {
                         items: [...prev, ...videoData.items],
                     }));
                 }
+
+                setNextPageToken(videoData.nextPageToken);
             } catch (error) {
                 console.error("PrevItems is not defiend", error);
             }
