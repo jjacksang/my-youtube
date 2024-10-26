@@ -7,12 +7,13 @@ export const fetchYoutubeAPI = async (videoId) => {
     return res;
 };
 
-export const fetchSearchVideo = async (searchId, nextPageToken) => {
+export const fetchSearchVideo = async (searchId, nextPageToken, maxResults = 20) => {
     try {
         const res = await axios.get(`${BASE_URL}?q=${encodeURIComponent(searchId)}`, {
             params: {
                 q: searchId,
                 nextPageToken: nextPageToken || undefined,
+                maxResults: maxResults,
             },
         });
 
@@ -55,13 +56,14 @@ export const fetchChannel = async (channelId) => {
     }
 };
 
-export const fetchChannelVideo = async (channelId, searchType, nextPageToken) => {
+export const fetchChannelVideo = async (channelId, searchType, nextPageToken, maxResults = 20) => {
     try {
         const res = await axios.get(`${BASE_URL}`, {
             params: {
                 channelId: channelId,
                 searchType: searchType,
                 nextPageToken: nextPageToken || undefined,
+                maxResults: maxResults,
             },
         });
         console.log(res.data);

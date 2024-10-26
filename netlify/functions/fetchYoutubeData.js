@@ -39,7 +39,7 @@ exports.handler = async (event, context) => {
                 },
                 params: {
                     part: "snippet",
-                    maxResults: (maxResults += 20),
+                    maxResults: event.queryStringParameters.maxResults || 20,
                     q: q,
                     type: "video",
                     nextPageToken: nextPageToken || undefined,
@@ -81,7 +81,7 @@ exports.handler = async (event, context) => {
                     part: "snippet",
                     channelId: channelId,
                     type: "playlist",
-                    maxResults: (maxResults += 20),
+                    maxResults: event.queryStringParameters.maxResults || 20,
                     order: "date",
                     nextPageToken: nextPageToken || undefined,
                     key: api_key,

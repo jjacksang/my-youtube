@@ -20,7 +20,7 @@ const Channel = () => {
             .then((data) => {
                 setChannelDetail(data.items[0]);
 
-                return fetchChannelVideo(channelId, "playlist");
+                return fetchChannelVideo(channelId, "playlist", null, 20);
             })
             .then((videoData) => {
                 setChannelVideos({ items: videoData.items || [] });
@@ -33,7 +33,7 @@ const Channel = () => {
     const loadMoreVideo = async () => {
         if (nextPageToken) {
             try {
-                const videoData = await fetchChannelVideo(channelId, "playlist", nextPageToken);
+                const videoData = await fetchChannelVideo(channelId, "playlist", nextPageToken, 20);
 
                 if (videoData?.data?.items) {
                     setChannelVideos((prev) => ({

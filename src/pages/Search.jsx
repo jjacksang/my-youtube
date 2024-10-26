@@ -41,7 +41,7 @@ const Search = () => {
             try {
                 const videoData = await fetchSearchVideo(searchId, nextPageToken);
 
-                if (videoData?.data?.items) {
+                if (videoData?.items) {
                     setVideos((prev) => ({
                         ...prev,
                         items: [...prev, ...videoData.items],
