@@ -11,7 +11,7 @@ export const fetchSearchVideo = async (searchId, nextPageToken, maxResults = 20)
     try {
         const res = await axios.get(`${BASE_URL}?q=${encodeURIComponent(searchId)}`, {
             params: {
-                q: encodeURIComponent(searchId),
+                q: searchId,
                 nextPageToken: nextPageToken || undefined,
                 maxResults: maxResults,
             },
