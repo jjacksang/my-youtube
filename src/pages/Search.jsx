@@ -19,6 +19,7 @@ const Search = () => {
     const [nextPageToken, setNextPageToken] = useState(null);
 
     useEffect(() => {
+        setVideos([]);
         setIsLoading(true);
 
         // 배포 버전
