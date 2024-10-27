@@ -24,7 +24,7 @@ const Search = () => {
         // 배포 버전
         fetchSearchVideo(searchId)
             .then((result) => {
-                setVideos({ items: result.items || [] });
+                setVideos((prev) => [...prev, result.items]);
                 setIsLoading(false);
                 setNextPageToken(result.nextPageToken);
             })
@@ -42,10 +42,7 @@ const Search = () => {
                 const videoData = await fetchSearchVideo(searchId, nextPageToken);
 
                 if (videoData?.data?.items) {
-                    setVideos((prev) => ({
-                        ...prev,
-                        items: [...prev, ...videoData.items],
-                    }));
+                    setVideos((prev) => [...prev, videoData.items]);
                 }
             } catch (error) {
                 console.error("VideoMore Error : ", error);
