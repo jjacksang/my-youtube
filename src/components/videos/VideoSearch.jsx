@@ -5,7 +5,7 @@ const VideoSearch = ({ videos }) => {
     console.log(videos);
     return (
         <>
-            {Array.isArray(videos.items) && videos.items.length > 0 ? (
+            {Array.isArray(videos) && videos.length > 0 ? (
                 videos.items.map((video, index) => (
                     <div className="video" key={index}>
                         <div className="video__thumb play__icon">
