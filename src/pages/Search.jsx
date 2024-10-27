@@ -18,37 +18,35 @@ const Search = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [nextPageToken, setNextPageToken] = useState(null);
 
-    useEffect(() => {
-        setIsLoading(true);
+    const fetchVideos = async (pageToken = null) => {
+        try {
+            setIsLoading(true);
+            const result = await fetchSearchVideo(searchId, pageToken);
 
-        // 배포 버전
-        fetchSearchVideo(searchId)
-            .then((result) => {
-                setVideos((prev) => [...prev, ...result.items]);
-                setIsLoading(false);
-                setNextPageToken(result.nextPageToken);
-            })
-            .catch((error) => {
-                console.error("error fetching search results:", error);
-                setIsLoading(false);
-            });
-    }, [searchId]);
+            setVideos((prev) => (pageToken ? [...prev, ...result.items] : result.items));
+            setNextPageToken(result.nextPageToken);
 
-    console.log(videos);
-
-    const handleLoadMore = async () => {
-        if (nextPageToken) {
-            try {
-                const videoData = await fetchSearchVideo(searchId, nextPageToken);
-
-                if (videoData?.data?.items) {
-                    setVideos((prev) => [...prev, ...videoData.items]);
-                }
-            } catch (error) {
-                console.error("VideoMore Error : ", error);
-            }
+            console.log(result.items);
+            console.log(result.nextPageToken);
+        } catch (error) {
+            console.error("Error fetching Videos: ", error);
+        } finally {
+            setIsLoading(false);
         }
     };
+
+    useEffect(() => {
+        setVideos([]);
+        fetchVideos();
+    }, [searchId]);
+
+    const handleLoadMore = async () => {
+        if (nextPageToken && !isLoading) {
+            await fetchVideos(nextPageToken);
+        }
+    };
+
+    console.log(videos);
 
     return (
         <Main title="유투브 검색" description="유튜브 검색 결과 페이지입니다.">
