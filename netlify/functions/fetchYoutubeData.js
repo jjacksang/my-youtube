@@ -73,8 +73,7 @@ exports.handler = async (event, context) => {
                 },
             });
         } else if (channelId && searchType === "playlist") {
-            const pageToken = event.queryStringParameters.nextPageToken;
-            console.log(">> This is pageToken: ", pageToken);
+            console.log(">> This is pageToken: ", nextPageToken);
 
             res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search`, {
                 headers: {
@@ -86,7 +85,7 @@ exports.handler = async (event, context) => {
                     type: "playlist",
                     maxResults: event.queryStringParameters.maxResults || 20,
                     order: "date",
-                    pageToken: pageToken || "",
+                    pageToken: nextPageToken || "",
                     key: api_key,
                 },
             });

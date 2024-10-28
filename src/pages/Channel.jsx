@@ -23,7 +23,7 @@ const Channel = () => {
                 return fetchChannelVideo(channelId, "playlist", null, 20);
             })
             .then((videoData) => {
-                setChannelVideos({ items: videoData.items || [] });
+                setChannelVideos((prev) => [...prev, ...videoData.items]);
                 setNextPageToken(videoData.nextPageToken);
             });
     }, [channelId]);
@@ -41,10 +41,7 @@ const Channel = () => {
                 console.log(">>>New NextPageToken: ", videoData.nextPageToken);
 
                 if (videoData?.data?.items) {
-                    setChannelVideos((prev) => ({
-                        ...prev,
-                        items: [...prev, ...videoData.data.items],
-                    }));
+                    setChannelVideos((prev) => [...prev, ...videoData.items]);
                 }
 
                 setNextPageToken(videoData.nextPageToken);
