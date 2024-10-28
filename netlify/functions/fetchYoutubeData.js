@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
                     maxResults: event.queryStringParameters.maxResults || 20,
                     q: q,
                     type: "video",
-                    nextPageToken: nextPageToken || undefined,
+                    nextPageToken: nextPageToken || "",
                     key: api_key,
                 },
             });
@@ -86,7 +86,7 @@ exports.handler = async (event, context) => {
                     type: "playlist",
                     maxResults: event.queryStringParameters.maxResults || 20,
                     order: "date",
-                    pageToken: pageToken || undefined,
+                    pageToken: pageToken || "",
                     key: api_key,
                 },
             });

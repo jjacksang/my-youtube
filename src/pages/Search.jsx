@@ -46,6 +46,7 @@ const Search = () => {
                 if (videoData?.items) {
                     setVideos((prev) => [...prev, ...videoData.items]);
                     setNextPageToken(videoData.nextPageToken);
+                    console.log(videoData.nextPageToken);
                 }
             } catch (error) {
                 console.error("VideoMore Error : ", error);

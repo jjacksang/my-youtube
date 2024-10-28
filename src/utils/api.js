@@ -17,7 +17,9 @@ export const fetchSearchVideo = async (searchId, nextPageToken, maxResults = 20)
             },
         });
 
+        console.log("nextPageToken: ", nextPageToken);
         console.log("server : ", res.data.items);
+        console.log("res: ", res);
 
         if (!res.data || !res.data.items) {
             console.error("Unexpected response structure:", res.data);
