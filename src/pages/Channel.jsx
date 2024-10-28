@@ -36,14 +36,11 @@ const Channel = () => {
                 console.log(">>> nextPageToken: ", nextPageToken);
                 const videoData = await fetchChannelVideo(channelId, "playlist", nextPageToken, 20);
 
-                console.log(">>>Prev Items: ", channelVideos.items.length);
-                console.log(">>>New Items: ", videoData.items.length);
+                console.log(">>>Prev Items: ", channelVideos);
+                console.log(">>>New Items: ", videoData.items);
                 console.log(">>>New NextPageToken: ", videoData.nextPageToken);
 
-                if (videoData?.data?.items) {
-                    setChannelVideos((prev) => [...prev, ...videoData.items]);
-                }
-
+                setChannelVideos((prev) => [...prev, ...videoData.items]);
                 setNextPageToken(videoData.nextPageToken);
             } catch (error) {
                 console.error("PrevItems is not defiend", error);
