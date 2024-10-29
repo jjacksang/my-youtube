@@ -38,19 +38,17 @@ const Search = () => {
     console.log(videos);
 
     const handleLoadMore = async () => {
-        if (nextPageToken) {
-            try {
-                const videoData = await fetchSearchVideo(searchId, nextPageToken);
+        try {
+            const videoData = await fetchSearchVideo(searchId, nextPageToken);
 
-                console.log(videoData);
-                if (videoData?.items) {
-                    setVideos((prev) => [...prev, ...videoData.items]);
-                    setNextPageToken(videoData.nextPageToken);
-                    console.log(videoData.nextPageToken);
-                }
-            } catch (error) {
-                console.error("VideoMore Error : ", error);
+            console.log(videoData);
+            if (videoData?.items) {
+                setVideos((prev) => [...prev, ...videoData.items]);
+                setNextPageToken(videoData.nextPageToken);
+                console.log(videoData.nextPageToken);
             }
+        } catch (error) {
+            console.error("VideoMore Error : ", error);
         }
     };
 
