@@ -21,6 +21,7 @@ const Search = () => {
     useEffect(() => {
         setVideos([]);
         setIsLoading(true);
+        setNextPageToken(null);
 
         // 배포 버전
         fetchSearchVideo(searchId)

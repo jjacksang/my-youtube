@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     }
 
     const api_key = process.env.YOUTUBE_API_KEY;
-    const { q, videoId, channelId, searchType, nextPageToken } = event.queryStringParameters;
+    const { q, videoId, channelId, searchType, pageToken } = event.queryStringParameters;
     console.log("여기다 여기 -------", api_key);
     console.log(process.env.YOUTUBE_API_KEY);
 
@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
                     maxResults: event.queryStringParameters.maxResults || 20,
                     q: q,
                     type: "video",
-                    nextPageToken: nextPageToken || "",
+                    pageToken: pageToken || "",
                     key: api_key,
                 },
             });
@@ -73,7 +73,7 @@ exports.handler = async (event, context) => {
                 },
             });
         } else if (channelId && searchType === "playlist") {
-            console.log(">> This is pageToken: ", nextPageToken);
+            console.log(">> This is pageToken: ", pageToken);
 
             res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search`, {
                 headers: {
@@ -85,7 +85,7 @@ exports.handler = async (event, context) => {
                     type: "playlist",
                     maxResults: event.queryStringParameters.maxResults || 20,
                     order: "date",
-                    pageToken: nextPageToken || "",
+                    pageToken: pageToken || "",
                     key: api_key,
                 },
             });
