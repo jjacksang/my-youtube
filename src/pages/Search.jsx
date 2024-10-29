@@ -59,7 +59,7 @@ const Search = () => {
                 <div className="video__inner search">
                     {isLoading ? (
                         <>
-                            <SkeletonList count={16} />
+                            <SkeletonList count={24} />
                         </>
                     ) : (
                         <Suspense fallback={<div>Loading...........</div>}>
