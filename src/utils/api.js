@@ -66,6 +66,7 @@ export const fetchChannelVideo = async (channelId, searchType, nextPageToken, ma
                 searchType: searchType,
                 pageToken: nextPageToken || "",
                 maxResults: maxResults,
+                type: "video",
             },
         });
         console.log(res.data);
