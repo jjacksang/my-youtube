@@ -47,7 +47,7 @@ export const fetchSearchVideo = async (
         if (!nextPageToken) {
             cache.searchCache[cacheKey] = res.data;
         } else {
-            const prevCacheKey = `search-${searchId}-`;
+            const prevCacheKey = `search-${searchId}-${nextPageToken || ""}`;
             const prevCache = cache.searchCache[prevCacheKey] || { items: [] };
 
             cache.searchCache[cacheKey] = {
