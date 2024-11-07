@@ -26,7 +26,7 @@ const Search = () => {
         // 배포 버전
         const fetchVideo = async () => {
             try {
-                const { data, newNextPageToken: newNextPageToken } =
+                const { data, nextPageToken: newNextPageToken } =
                     await fetchSearchVideo(searchId);
                 setVideos(data.items);
                 setNextPageToken(newNextPageToken);
