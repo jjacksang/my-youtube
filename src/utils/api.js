@@ -48,7 +48,8 @@ export const fetchSearchVideo = async (
             cache.searchCache[cacheKey] = res.data;
         } else {
             const prevCacheKey = `search-${searchId}-`;
-            const prevCache = cache.searchCache[prevCacheKey || { items: [] }];
+            const prevCache = cache.searchCache[prevCacheKey] || { items: [] };
+
             cache.searchCache[cacheKey] = {
                 ...prevCache,
                 items: [...prevCache.items, ...res.data.items],
@@ -61,7 +62,7 @@ export const fetchSearchVideo = async (
             console.log(
                 `Cache for ${cacheKey} has been removed after timeout.`
             );
-        }, 6000 * 5);
+        }, 6000 * 10);
 
         return cache.searchCache[cacheKey];
     } catch (error) {
