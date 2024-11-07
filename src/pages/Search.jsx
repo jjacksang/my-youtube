@@ -24,30 +24,32 @@ const Search = () => {
         setNextPageToken(null);
 
         // 배포 버전
-        fetchSearchVideo(searchId)
-            .then((result) => {
-                setVideos((prev) => [...prev, ...result.items]);
+        const fetchVideo = async () => {
+            try {
+                const { data, newNextPageToken: newNextPageToken } =
+                    await fetchSearchVideo(searchId);
+                setVideos(data.items);
+                setNextPageToken(newNextPageToken);
                 setIsLoading(false);
-                setNextPageToken(result.nextPageToken);
-            })
-            .catch((error) => {
-                console.error("error fetching search results:", error);
+            } catch (error) {
+                console.error("Error fetcing search results: ", error);
                 setIsLoading(false);
-            });
+            }
+        };
+
+        fetchVideo();
     }, [searchId]);
 
     console.log(videos);
 
     const handleLoadMore = async () => {
         try {
-            const videoData = await fetchSearchVideo(searchId, nextPageToken);
+            const { data, nextPageToken: newNextPageToken } =
+                await fetchSearchVideo(searchId, nextPageToken);
 
-            console.log(videoData);
-            if (videoData?.items) {
-                setVideos((prev) => [...prev, ...videoData.items]);
-                setNextPageToken(videoData.nextPageToken);
-                console.log(videoData.nextPageToken);
-            }
+            console.log(data);
+            setVideos((prev) => [...prev, ...data.items]);
+            setNextPageToken(newNextPageToken);
         } catch (error) {
             console.error("VideoMore Error : ", error);
         }
@@ -68,7 +70,9 @@ const Search = () => {
                     )}
                 </div>
                 <div className="video__more">
-                    {nextPageToken && <button onClick={handleLoadMore}>더보기</button>}
+                    {nextPageToken && (
+                        <button onClick={handleLoadMore}>더보기</button>
+                    )}
                 </div>
             </section>
         </Main>
