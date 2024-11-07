@@ -43,8 +43,17 @@ export const fetchSearchVideo = async (
             throw new Error("Unexpected response structure");
         }
 
+        if (!nextPageToken) {
+            cache.searchCache[cacheKey] = res.data;
+        } else {
+            const prevCache = cache.searchCache[`search-${searchId}-`];
+            cache.searchCache[cacheKey] = {
+                ...prevCache,
+                items: [...prevCache.items, ...res.data.items],
+            };
+        }
+
         // 캐시에 데이터 저장
-        cache.searchCache[cacheKey] = res.data;
 
         // 일정 시간 이후 캐시 삭제
         setTimeout(() => {
