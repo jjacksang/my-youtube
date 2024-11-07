@@ -43,6 +43,7 @@ export const fetchSearchVideo = async (
             throw new Error("Unexpected response structure");
         }
 
+        // 캐시에 데이터 저장
         if (!nextPageToken) {
             cache.searchCache[cacheKey] = res.data;
         } else {
@@ -53,8 +54,6 @@ export const fetchSearchVideo = async (
             };
         }
 
-        // 캐시에 데이터 저장
-
         // 일정 시간 이후 캐시 삭제
         setTimeout(() => {
             delete cache.searchCache[cacheKey];
@@ -63,7 +62,7 @@ export const fetchSearchVideo = async (
             );
         }, 60000);
 
-        return res.data;
+        return cache.searchCache[cacheKey];
     } catch (error) {
         console.error("Client : Error fetching data => ", error);
         throw error;
