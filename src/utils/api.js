@@ -53,6 +53,7 @@ export const fetchSearchVideo = async (
             cache.searchCache[cacheKey] = {
                 ...prevCache,
                 items: [...prevCache.items, ...res.data.items],
+                nextPageToken: res.data.nextPageToken,
             };
         }
 
@@ -64,10 +65,7 @@ export const fetchSearchVideo = async (
             );
         }, 6000 * 10);
 
-        return {
-            data: cache.searchCache[cacheKey],
-            nextPageToken: res.data.nextPageToken,
-        };
+        return cache.searchCache[cacheKey];
     } catch (error) {
         console.error("Client : Error fetching data => ", error);
         throw error;

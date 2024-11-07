@@ -26,9 +26,9 @@ const Search = () => {
         // 배포 버전
         const fetchVideo = async () => {
             try {
-                const { data, nextPageToken: newNextPageToken } =
+                const { items, nextPageToken: newNextPageToken } =
                     await fetchSearchVideo(searchId);
-                setVideos(data.items);
+                setVideos(items);
                 setNextPageToken(newNextPageToken);
                 setIsLoading(false);
             } catch (error) {
@@ -44,11 +44,11 @@ const Search = () => {
 
     const handleLoadMore = async () => {
         try {
-            const { data, nextPageToken: newNextPageToken } =
+            const { items, nextPageToken: newNextPageToken } =
                 await fetchSearchVideo(searchId, nextPageToken);
 
-            console.log(data);
-            setVideos((prev) => [...prev, ...data.items]);
+            console.log(items);
+            setVideos((prev) => [...prev, ...items]);
             setNextPageToken(newNextPageToken);
         } catch (error) {
             console.error("VideoMore Error : ", error);
