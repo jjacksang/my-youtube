@@ -51,6 +51,7 @@ export const fetchSearchVideo = async (
             const prevCache = cache.searchCache[prevCacheKey] || { items: [] };
 
             cache.searchCache[cacheKey] = {
+                ...prevCache,
                 items: [...prevCache.items, ...res.data.items],
             };
         }
